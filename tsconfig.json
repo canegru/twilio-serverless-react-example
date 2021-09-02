@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "functions-src",
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "functions",
+    "skipLibCheck": true,
+    "sourceMap": false
+  }
+}
