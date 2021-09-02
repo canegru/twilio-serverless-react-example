@@ -8,7 +8,7 @@
     "start:client": "cd ./app && npm start",
     "build:client": "cd ./app && npm run build",
     "build:server": "tsc",
-    "deploy": "npm run build:client && twilio-run deploy --override-existing-project"
+    "deploy": "npm run build:server && npm run build:client && twilio-run deploy --override-existing-project"
   },
   "dependencies": {
     "@twilio-labs/serverless-runtime-types": "^2.1.1",
