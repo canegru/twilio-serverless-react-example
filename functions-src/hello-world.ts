@@ -17,7 +17,7 @@ type MyContext = {
 
 const serverless = async (context: Context<MyContext>, event: MyEvent) => {
   return {
-    status: "Hello World",
+    status: "Hello World - 2",
     details: {
       domain: context.DOMAIN_NAME,
       path: context.PATH,
