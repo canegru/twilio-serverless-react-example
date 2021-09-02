@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS deployment
 
 on:
   push:
@@ -26,3 +26,15 @@ jobs:
       run: |
         npm install
         npm run build
+
+    - name: Install Twilio CLI and Twilio Serverless plugin
+      run: |
+        npm install twilio-cli -g
+        twilio plugins:install @twilio-labs/plugin-serverless
+
+    - name: Deploy Application
+      run: npm run deploy
+      env:
+        TWILIO_ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+        TWILIO_API_KEY: ${{ secrets.AUTH_TOKEN }}
+        TWILIO_API_SECRET: ${{secrets.AUTH_TOKEN_SECRET}}
