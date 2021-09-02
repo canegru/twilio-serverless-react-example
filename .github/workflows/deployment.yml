@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+  TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+  TWILIO_API_SECRET: ${{secrets.TWILIO_API_SECRET}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,6 +23,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Install Twilio CLI and Twilio Serverless plugin
+      run: |
+        npm install twilio-cli -g
+        twilio plugins:install @twilio-labs/plugin-serverless@latest
+
     - name: Install Dependencies
       run: |
         npm install
@@ -26,14 +36,5 @@ jobs:
       run: |
         npm run build
 
-    - name: Install Twilio CLI and Twilio Serverless plugin
-      run: |
-        npm install twilio-cli -g
-        twilio plugins:install @twilio-labs/plugin-serverless
-
     - name: Deploy Application
       run: npm run deploy
-      env:
-        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
-        TWILIO_API_SECRET: ${{secrets.TWILIO_API_SECRET}}
