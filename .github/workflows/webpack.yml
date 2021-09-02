@@ -34,6 +34,6 @@ jobs:
     - name: Deploy Application
       run: npm run deploy
       env:
-        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO.ACCOUNT_SID }}
-        TWILIO_API_KEY: ${{ secrets.TWILIO.AUTH_TOKEN }}
-        TWILIO_API_SECRET: ${{secrets.TWILIO.AUTH_TOKEN_SECRET}}
+        TWILIO_ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+        TWILIO_API_KEY: ${{ secrets.AUTH_TOKEN }}
+        TWILIO_API_SECRET: ${{secrets.AUTH_TOKEN_SECRET}}
