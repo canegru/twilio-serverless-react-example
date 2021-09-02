@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "cd ./app && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "tsc -w & twilio-run --no-assets",
     "start:client": "cd ./app && npm start",
     "build:client": "cd ./app && npm run build",
     "build:server": "tsc",
-    "deploy": "npm run build:server && npm run build:client && twilio-run deploy --override-existing-project"
+    "build": "npm run build:server && npm run build:client",
+    "deploy": "twilio-run deploy --override-existing-project"
   },
   "dependencies": {
     "@twilio-labs/serverless-runtime-types": "^2.1.1",
