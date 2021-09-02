@@ -15,11 +15,14 @@ type MyContext = {
   GREETING?: string;
 };
 
-const serverless = async () => {
-  const message = {
+const serverless = async (context: Context<MyContext>, event: MyEvent) => {
+  return {
     status: "Hello World",
+    details: {
+      domain: context.DOMAIN_NAME,
+      path: context.PATH,
+    }
   };
-  return message;
 };
 
 export const handler: ServerlessFunctionSignature = (
@@ -27,7 +30,7 @@ export const handler: ServerlessFunctionSignature = (
   event: MyEvent,
   callback: ServerlessCallback
 ) => {
-  serverless()
+  serverless(context, event)
     .then((data) => callback(null, data))
     .catch((err) => callback(err, undefined));
 };
